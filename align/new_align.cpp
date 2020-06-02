@@ -26,9 +26,26 @@ void operator delete [] ( void *ptr) {
 }
 
 */
-//#__STDCPP_DEFAULT_NEW_ALIGNMENT__(32)
+
+#define NO_ALIGNED_ALLOC
+#ifdef NO_ALIGNED_ALLOC
+#include <cstdio>
+namespace std {
+
+void * aligned_alloc(std::size_t align, std::size_t sz)
+{
+  void * ptr;
+  if ( align < sizeof(void*)) align = sizeof(void*);
+  posix_memalign(&ptr,align,sz);
+  if (ptr) return ptr;
+  fprintf(stderr,"Could not allocate aligned mem\n");
+  perror("aligned_alloc "); 
+  exit(EXIT_FAILURE);
+}
+}
 
 
+#endif
 
 
 int main() {
@@ -49,7 +66,7 @@ int main() {
 
     delete [] z;
 /// use new with placement-like option 
-    constexpr std::align_val_t al {64};
+    constexpr std::align_val_t al{std::size_t(64ULL)};
     double * x = new(al) double[n];
 
     double *xp0 = x;
