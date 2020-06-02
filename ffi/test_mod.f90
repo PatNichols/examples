@@ -357,7 +357,7 @@ Contains
          acnt = 0.
          bcnt = 0.
          ccnt = 0.
-         obj%d = 2.4
+         obj%d = 2.4d0
          Do i = 1, 4
             Do j = 1, 3
                Do k = 1, 2

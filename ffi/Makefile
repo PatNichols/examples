@@ -1,5 +1,5 @@
-CXX:=g++
-FC:=gfortran
+CXX?=g++
+FC?=gfortran
 
 all:
 	${CXX} -g -c test_ffi.cpp
