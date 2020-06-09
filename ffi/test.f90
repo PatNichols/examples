@@ -32,7 +32,7 @@ Program test
          x_c = c_test_get_c_value (c_tst, i)
          x_f = f_test_get_c_value (f_tst, i)
          Print *, x_c, " ", x_f, " ", (x_c-x_f)
-      End Do
+      End Do	
       x_c = c_test_get_d_value (c_tst)
       x_f = f_test_get_d_value (f_tst)
       Print *, "d values"

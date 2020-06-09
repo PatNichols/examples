@@ -11,5 +11,4 @@ program gen_fun
   call my_fun(r)
   call my_fun(i)
   call my_fun(i,r)
-!  call my_fun(r,i)  
 end program  

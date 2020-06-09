@@ -34,11 +34,4 @@ contains
     
     end subroutine f3   
 
-
-!    subroutine f4(r,i)
-!      real(c_double) :: r
-!      integer(c_int32_t) :: i
-!      print *,"called f4 with ",i," and ",r
-!    end subroutine f4
-      
 end module
