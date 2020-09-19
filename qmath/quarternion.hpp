@@ -140,6 +140,7 @@ public:
         p = T(1)/sqrt(p);
         return quarternion<T>( p*m_t, p*m_x, p*m_y, p*m_z);
     }
+    
     quarternion vunit() const noexcept {
         T vn = sqrt(vnorm());
         return quarternion<T>(T(0),m_x/vn,m_y/vn,m_z/vn);
@@ -149,7 +150,7 @@ public:
         return m_x*m_x+m_y*m_y+m_z*m_z;
     }
 
-    T exp() const noexcept {
+    quarternion exp() const noexcept {
         T vn = m_x * m_x + m_y * m_y + m_z * m_z;
         vn = sqrt(vn);
         T rx = exp(m_t);
@@ -158,10 +159,10 @@ public:
         T qx = m_x * vfact;
         T qy = m_y * vfact;
         T qz = m_z * vfact;
-        return quarternion<T>(qt,qx,qy,qz);
+        return quarternion(qt,qx,qy,qz)
     }
 
-    T log() const noexcept {
+    quarternion log() const noexcept {
         T vn = m_x * m_x + m_y * m_y + m_z * m_z;
         T qn = sqrt(vn + m_t * m_t);
         vn = sqrt(vn);
