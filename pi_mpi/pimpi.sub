@@ -1,0 +1,29 @@
+#!/bin/bash
+#PBS -N caf_intel
+#PBS -A SCSG0001
+#PBS -l select=4:ncpus=72:mpiprocs=9
+#PBS -l walltime=1:00:00
+#PBS -l place=scatter:excl
+#PBS -q regular
+#PBS -V
+#BBS -j oe
+
+export OMP_NUM_THREADS=1
+echo $PBS_JOBID
+echo $PBS_NODEFILE
+cat $PBS_NODEFILE
+echo $PBS_NUM_PPN
+echo "it is here"
+eval 'env | grep PBS'
+
+
+echo `ldd ./test_caf`
+
+module purge
+module load intel impi ncarenv ncarcompilers
+module list
+
+mpiexec.hydra -n 32  -genvall -machinefile $PBS_NODEFILE ./test_caf
+
+echo done!
+
